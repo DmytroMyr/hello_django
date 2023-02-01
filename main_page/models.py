@@ -76,7 +76,7 @@ class Events(models.Model):
     position = models.SmallIntegerField()
     price = models.DecimalField(max_digits=4, decimal_places=2)
     description = models.TextField(max_length=255, blank=False)
-    photo = models.ImageField(upload_to='dishes/%Y_%m_%d', blank=True)
+    photo = models.ImageField(upload_to='events/%Y_%m_%d', blank=True)
 
     def __str__(self) -> str:
         return f'{self.title}'
