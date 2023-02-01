@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>Main Manu</h1>
+        {% for category in categories %} {% if forloop.first %}
+        <p>First iteration</p>
+        {% endif %}
+        <h3>{{ category.title }}</h3>
+        {% for dish in category %}
+        <div>
+            <h5>{{ dish.title }}</h5>
+            <p>{{ dish.price }}</p>
+            {% if dish.photo %}
+            <img src="{{ dish.photo.url }}" alt="Dish photo" />
+            {% else %} <img src={% static "assets/no_photo.jpg" %} alt="Dish photo" /> {% endif %}
+        </div>
+        {% endfor %} {% endfor %}
+    </body>
+</html>
