@@ -1,7 +1,5 @@
 from django.db import models
-
-from django.db import models
-from django.core.validators import FileExtensionValidator
+from django.core.validators import FileExtensionValidator, RegexValidator
 
 
 class Category(models.Model):
@@ -56,20 +54,6 @@ class WhyUs(models.Model):
     class Meta:
         ordering = ('position',)
 
-
-class Specials(models.Model):
-    title = models.CharField(max_length=50, unique=True, db_index=True)
-    slogan = models.CharField(max_length=50, unique=True, db_index=True)
-    position = models.SmallIntegerField()
-    description = models.TextField(max_length=255, blank=False)
-    photo = models.ImageField(upload_to='dishes/special', blank=True)
-
-    def __str__(self) -> str:
-        return f'{self.title}'
-
-    class Meta:
-        ordering = ('position',)
-
         
 class Events(models.Model):
     title = models.CharField(max_length=50, unique=True, db_index=True)
@@ -83,3 +67,22 @@ class Events(models.Model):
 
     class Meta:
         ordering = ('position',)
+
+
+class Reservation(models.Model):
+    phone_validator = RegexValidator(regex=r'^\+?3?8?0\d{2}[- ]?(\d[- ]?){7}$', message='Error phone number')
+
+    name = models.CharField(max_length=50)
+    phone = models.CharField(max_length=20, validators=[phone_validator])
+    persons = models.SmallIntegerField()
+    message = models.TextField(max_length=255, blank=True)
+
+    date = models.DateField(auto_now_add=True)
+    date_proccessing = models.DateField(auto_now=True)
+    is_proccessed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'{self.name}: {self.phone}'
+
+    class Meta:
+        ordering = ('-date',)

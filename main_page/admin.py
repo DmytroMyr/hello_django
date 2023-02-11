@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Dish, About, WhyUs, Events, Specials
+from .models import Category, Dish, About, WhyUs, Events, Reservation
 
 
 class DishAdmin(admin.TabularInline):
@@ -42,9 +42,7 @@ class EventsAdmin(admin.ModelAdmin):
     list_editable = ['position', 'price', 'description', 'photo']
 
 
-@admin.register(Specials)
-class SpecialsAdmin(admin.ModelAdmin):
-    model = Specials
-    list_display = ['title', 'slogan', 'position', 'description', 'photo']
-    list_editable = ['slogan', 'position', 'description', 'photo']
-
+@admin.register(Reservation)
+class ReservationAdmin(admin.ModelAdmin):
+    model = Reservation
+    list_display = ['name', 'is_proccessed']

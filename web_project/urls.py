@@ -19,8 +19,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from main_page.views import main
+from account.views import registration_view, login_view, logout_view
 
 urlpatterns = [
+    path('logout/', logout_view, name='logout_view'),
+    path('login/', login_view, name='login_view'),
+    path('registration/', registration_view, name='registration_name'),
     path('', main),
     path('admin/', admin.site.urls),
 ]
