@@ -45,4 +45,4 @@ class EventsAdmin(admin.ModelAdmin):
 @admin.register(Reservation)
 class ReservationAdmin(admin.ModelAdmin):
     model = Reservation
-    list_display = ['name', 'is_proccessed']
+    list_display = ['name', 'is_processed']

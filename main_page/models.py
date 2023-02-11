@@ -78,8 +78,8 @@ class Reservation(models.Model):
     message = models.TextField(max_length=255, blank=True)
 
     date = models.DateField(auto_now_add=True)
-    date_proccessing = models.DateField(auto_now=True)
-    is_proccessed = models.BooleanField(default=False)
+    date_processing = models.DateField(auto_now=True)
+    is_processed = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.name}: {self.phone}'
